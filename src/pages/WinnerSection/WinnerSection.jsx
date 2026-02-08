@@ -8,10 +8,6 @@ import {
   FaMedal,
   FaCrown,
 } from "react-icons/fa";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/free-mode";
 import useAxios from "../../hooks/useAxios";
 import SkeletonLoader from "../../components/Skeletons/Skeletons";
 
@@ -155,7 +151,7 @@ const WinnerSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <FaCrown />
             Hall of Fame
           </div>
@@ -222,25 +218,22 @@ const WinnerSection = () => {
               <span className="text-2xl">🎉</span>
             </h3>
 
-            <Swiper
-              modules={[Autoplay, FreeMode]}
-              slidesPerView="auto"
-              spaceBetween={16}
-              loop={true}
-              freeMode={true}
-              speed={5000}
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-              }}
-              className="winner-ticker"
-            >
-              {tickerWinners.map((winner, index) => (
-                <SwiperSlide key={index} className="!w-auto">
-                  <WinnerTickerCard winner={winner} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            {/* ADDED: Wrapper with fading edges */}
+            <div className="relative">
+              {/* Left Fading Edge */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-emerald-900 via-emerald-900/80 to-transparent z-10 pointer-events-none" />
+
+              {/* Right Fading Edge */}
+              <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-l from-emerald-900 via-emerald-900/80 to-transparent z-10 pointer-events-none" />
+
+              <div className="overflow-hidden">
+                <div className="flex gap-4 animate-marquee hover:[animation-play-state:paused]">
+                  {[...tickerWinners, ...tickerWinners].map((winner, index) => (
+                    <WinnerTickerCard key={index} winner={winner} />
+                  ))}
+                </div>
+              </div>
+            </div>
           </motion.div>
         )}
 

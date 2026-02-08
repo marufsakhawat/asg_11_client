@@ -91,6 +91,8 @@ const ContestDetails = () => {
   const isEnded = !timeLeft;
   const hasWinner = !!contest.winnerEmail;
   const hasSubmitted = !!participant?.submittedTask;
+  const isOwnContest = contest?.creatorEmail === user?.email;
+  const isAdmin = user?.role === "admin";
 
   const handlePayment = async () => {
     if (!user) {
@@ -287,8 +289,8 @@ const ContestDetails = () => {
                 transition={{ delay: 0.2 }}
                 className={`rounded-2xl p-6 ${
                   hasSubmitted
-                    ? "bg-green-50 border border-green-200"
-                    : "bg-yellow-50 border border-yellow-200"
+                    ? "bg-green-500/10 border border-green-500/30"
+                    : "bg-amber-500/10 border border-amber-500/30"
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -301,7 +303,7 @@ const ContestDetails = () => {
                     <h3 className="font-bold">
                       {hasSubmitted ? "Task Submitted" : "Submission Pending"}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-base-content/70">
                       {hasSubmitted
                         ? `Submitted on ${new Date(
                             participant.submittedAt
@@ -311,11 +313,13 @@ const ContestDetails = () => {
                   </div>
                 </div>
                 {hasSubmitted && (
-                  <div className="mt-4 p-4 bg-white rounded-xl">
-                    <p className="text-sm text-gray-500 mb-1">
+                  <div className="mt-4 p-4 bg-base-200 rounded-xl">
+                    <p className="text-sm text-base-content/60 mb-1">
                       Your Submission:
                     </p>
-                    <p className="text-gray-700">{participant.submittedTask}</p>
+                    <p className="text-base-content">
+                      {participant.submittedTask}
+                    </p>
                   </div>
                 )}
               </motion.div>
@@ -326,14 +330,22 @@ const ContestDetails = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-gradient-to-br from-cyan-900 via-blue-900 to-cyan-900 rounded-2xl p-6 text-white"
+              className="bg-gradient-to-br from-emerald-700 via-blue-800 to-cyan-900 rounded-2xl p-6 text-white"
             >
               <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
                 <FaClock />
-                {isEnded ? "Contest Ended" : "Time Remaining"}
+                {hasWinner
+                  ? "Contest Completed"
+                  : isEnded
+                  ? "Contest Ended"
+                  : "Time Remaining"}
               </h3>
 
-              {isEnded ? (
+              {hasWinner ? (
+                <p className="text-center text-green-400 py-4 flex items-center justify-center gap-2">
+                  <FaTrophy /> Winner has been declared
+                </p>
+              ) : isEnded ? (
                 <p className="text-center text-gray-300 py-4">
                   This contest has ended
                 </p>
@@ -423,6 +435,14 @@ const ContestDetails = () => {
                 <button disabled className="btn btn-lg w-full btn-disabled">
                   Winner Declared
                 </button>
+              ) : isAdmin ? (
+                <button disabled className="btn btn-lg w-full btn-disabled">
+                  Admins Cannot Participate
+                </button>
+              ) : isOwnContest ? (
+                <button disabled className="btn btn-lg w-full btn-disabled">
+                  Cannot Join Own Contest
+                </button>
               ) : isRegistered ? (
                 hasSubmitted ? (
                   <button
@@ -435,7 +455,7 @@ const ContestDetails = () => {
                 ) : (
                   <button
                     onClick={() => setIsSubmitModalOpen(true)}
-                    className="btn btn-lg w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-none"
+                    className="btn btn-lg w-full btn-gradient-primary text-white border-none"
                   >
                     <FaPaperPlane />
                     Submit Your Task
@@ -445,7 +465,7 @@ const ContestDetails = () => {
                 <button
                   onClick={handlePayment}
                   disabled={isPaying}
-                  className="btn btn-lg w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-none"
+                  className="btn btn-lg w-full btn-gradient-primary text-white border-none"
                 >
                   {isPaying ? (
                     <span className="loading loading-spinner"></span>
@@ -460,8 +480,9 @@ const ContestDetails = () => {
             </motion.div>
 
             {isRegistered && !hasSubmitted && !isEnded && (
-              <p className="text-center text-sm text-gray-500">
-                <FaCheck></FaCheck> You are registered for this contest
+              <p className="flex items-center justify-center gap-2 text-sm text-base-content/60">
+                <FaCheck className="text-green-500" /> You are registered for
+                this contest
               </p>
             )}
           </div>
@@ -506,7 +527,7 @@ const ContestDetails = () => {
               <button
                 onClick={handleSubmitTask}
                 disabled={isSubmitting || !submittedTask.trim()}
-                className="btn bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-none"
+                className="btn btn-gradient-primary-static text-white border-none"
               >
                 {isSubmitting ? (
                   <span className="loading loading-spinner"></span>

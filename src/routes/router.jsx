@@ -24,6 +24,11 @@ import ManageContests from "../pages/Dashboard/Admin/ManageContest";
 import Leaderboard from "../pages/LeaderBoard/LeaderBoard";
 import FAQ from "../pages/FAQ/FAQ";
 import BecomeCreator from "../pages/BecomeCreator/BecomeCreator";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
+import DashboardHome from "../pages/Dashboard/DashBoardHome";
+import Terms from "../pages/Terms/Terms";
+import Privacy from "../pages/Privacy/Privacy";
 
 export const router = createBrowserRouter([
   {
@@ -41,11 +46,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "contest/:id",
-        element: <ContestDetails></ContestDetails>,
+        element: (
+          <PrivateRoute>
+            <ContestDetails></ContestDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment-success",
-        element: <PaymentSuccess></PaymentSuccess>,
+        element: (
+          <PrivateRoute>
+            <PaymentSuccess></PaymentSuccess>
+          </PrivateRoute>
+        ),
       },
       {
         path: "leaderboard",
@@ -56,9 +69,25 @@ export const router = createBrowserRouter([
         Component: FAQ,
       },
       {
-        path: 'become-creator',
-        Component: BecomeCreator
-    }
+        path: "become-creator",
+        Component: BecomeCreator,
+      },
+      {
+        path: "about",
+        Component: About,
+      },
+      {
+        path: "contact",
+        Component: Contact,
+      },
+      {
+        path: "terms",
+        Component: Terms,
+      },
+      {
+        path: "privacy",
+        Component: Privacy,
+      },
     ],
   },
   {
@@ -85,14 +114,14 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: MyParticipated,
+        Component: DashboardHome,
       },
       {
         path: "my-participated",
         Component: MyParticipated,
       },
       {
-        path: "profile",
+        path: "my-profile",
         Component: MyProfile,
       },
       {

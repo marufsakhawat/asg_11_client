@@ -122,7 +122,7 @@ const MyCreatedContests = () => {
         </div>
         <Link
           to="/dashboard/add-contest"
-          className="btn bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-none"
+          className="btn btn-gradient-primary text-white border-none"
         >
           <FaPlusCircle />
           Add New Contest
@@ -236,7 +236,7 @@ const MyCreatedContests = () => {
                           </Link>
                         )}
 
-                        {contest.participantsCount === 0 && (
+                        {contest.status === "pending" && (
                           <Link
                             to={`/dashboard/edit-contest/${contest._id}`}
                             className="btn btn-sm btn-ghost text-amber-600"
@@ -246,17 +246,15 @@ const MyCreatedContests = () => {
                           </Link>
                         )}
 
-                        <button
-                          onClick={() => handleDelete(contest)}
-                          className="btn btn-sm btn-ghost text-red-500"
-                          title="Delete Contest"
-                          disabled={
-                            contest.status === "approved" &&
-                            contest.participantsCount > 0
-                          }
-                        >
-                          <FaTrash />
-                        </button>
+                        {contest.status === "pending" && (
+                          <button
+                            onClick={() => handleDelete(contest)}
+                            className="btn btn-sm btn-ghost text-red-500"
+                            title="Delete Contest"
+                          >
+                            <FaTrash />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -273,7 +271,7 @@ const MyCreatedContests = () => {
             </p>
             <Link
               to="/dashboard/add-contest"
-              className="btn bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-none"
+              className="btn btn-gradient-primary text-white border-none"
             >
               <FaPlusCircle />
               Create Contest

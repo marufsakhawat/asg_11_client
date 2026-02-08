@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router";
 import Logo from "../../components/Logo/Logo";
 import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
 import useAuth from "../../hooks/useAuth";
+import { FaUser, FaTachometerAlt, FaSignOutAlt } from "react-icons/fa";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
@@ -14,43 +15,42 @@ const NavBar = () => {
       });
   };
 
-  const navLinks = (
-    <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-500 font-semibold" : ""
-          }
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/all-contests"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-500 font-semibold" : ""
-          }
-        >
-          All Contests
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/leaderboard"
-          className={({ isActive }) =>
-            isActive ? "text-cyan-500 font-semibold" : ""
-          }
-        >
-          Leaderboard
-        </NavLink>
-      </li>
-    </>
-  );
+  // Public links - visible to all
+  const publicLinks = [
+    { to: "/", label: "Home" },
+    { to: "/all-contests", label: "All Contests" },
+    { to: "/leaderboard", label: "Leaderboard" },
+    { to: "/about", label: "About" },
+    { to: "/faq", label: "FAQ" },
+  ];
+
+  // Additional link for logged-in users
+  const authLinks = [
+    { to: "/", label: "Home" },
+    { to: "/all-contests", label: "All Contests" },
+    { to: "/leaderboard", label: "Leaderboard" },
+    { to: "/about", label: "About" },
+    { to: "/become-creator", label: "Become Creator" },
+    { to: "/faq", label: "FAQ" },
+  ];
+
+  const links = user ? authLinks : publicLinks;
+
+  const navLinks = links.map((link) => (
+    <li key={link.to + link.label}>
+      <NavLink
+        to={link.to}
+        className={({ isActive }) =>
+          `nav-link ${isActive ? "nav-link-active" : ""}`
+        }
+      >
+        {link.label}
+      </NavLink>
+    </li>
+  ));
 
   return (
-    <nav className="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+    <nav className="navbar bg-base-100/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 border-b border-base-200/50">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -71,7 +71,7 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-50 p-4 rounded-2xl w-56 nav-dropdown"
           >
             {navLinks}
           </ul>
@@ -80,7 +80,7 @@ const NavBar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">{navLinks}</ul>
+        <ul className="menu menu-horizontal px-1 gap-1">{navLinks}</ul>
       </div>
 
       <div className="navbar-end gap-2">
@@ -88,12 +88,15 @@ const NavBar = () => {
 
         {user ? (
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full ring ring-cyan-500 ring-offset-base-100 ring-offset-2">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-circle avatar online"
+            >
+              <div className="w-10 rounded-full ring-2 ring-cyan-500/30 hover:ring-cyan-500/60 transition-all">
                 <img
                   src={
                     user.photoURL ||
-                    "https://i.ibb.co/MgsTCcv/user-placeholder.jpg"
+                    `https://ui-avatars.com/api/?name=${user.displayName}&background=06b6d4&color=fff`
                   }
                   alt={user.displayName}
                 />
@@ -101,24 +104,69 @@ const NavBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
+              className="dropdown-content mt-3 z-50 p-4 rounded-2xl w-64 profile-dropdown"
             >
-              <li className="menu-title">
-                <span>{user.displayName || "User"}</span>
+              {/* User Info Header */}
+              <li className="px-3 py-3 border-b border-base-200 mb-2">
+                <div className="flex items-center gap-3 hover:bg-transparent cursor-default">
+                  <div className="avatar">
+                    <div className="w-12 rounded-full ring-2 ring-cyan-500/50">
+                      <img
+                        src={
+                          user.photoURL ||
+                          `https://ui-avatars.com/api/?name=${user.displayName}&background=06b6d4&color=fff`
+                        }
+                        alt={user.displayName}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-base-content">
+                      {user.displayName || "User"}
+                    </span>
+                    <span className="text-xs text-base-content/60 truncate max-w-[140px]">
+                      {user.email}
+                    </span>
+                  </div>
+                </div>
               </li>
+
+              {/* Dashboard Link */}
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link
+                  to="/dashboard"
+                  className="flex items-center gap-3 rounded-xl hover:bg-base-200 py-2.5"
+                >
+                  <FaTachometerAlt className="text-cyan-500" />
+                  <span>Dashboard</span>
+                </Link>
               </li>
+
+              {/* Profile Link */}
               <li>
-                <button onClick={handleLogOut}>Logout</button>
+                <Link
+                  to="/dashboard/my-profile"
+                  className="flex items-center gap-3 rounded-xl hover:bg-base-200 py-2.5"
+                >
+                  <FaUser className="text-purple-500" />
+                  <span>My Profile</span>
+                </Link>
+              </li>
+
+              {/* Logout Button */}
+              <li className="mt-2 pt-2 border-t border-base-200">
+                <button
+                  onClick={handleLogOut}
+                  className="flex items-center gap-3 rounded-xl text-red-500 hover:bg-red-500/10 py-2.5 w-full"
+                >
+                  <FaSignOutAlt />
+                  <span>Logout</span>
+                </button>
               </li>
             </ul>
           </div>
         ) : (
-          <Link
-            to="/login"
-            className="btn btn-md bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-600 hover:to-cyan-600 text-white border-none"
-          >
+          <Link to="/login" className="btn btn-md btn-gradient-primary">
             Login
           </Link>
         )}
