@@ -12,14 +12,27 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    
+    
+    
+    // const reqInterceptor = axiosSecure.interceptors.request.use(
+    //   (config) => {
+    //     config.headers.Authorization = `Bearer ${user?.accessToken}`;
+    //     return config;
+    //   },
+    //   (error) => {
+    //     return Promise.reject(error);
+    //   }
+    // );
+
     const reqInterceptor = axiosSecure.interceptors.request.use(
       (config) => {
-        config.headers.Authorization = `Bearer ${user?.accessToken}`;
+        if (user?.accessToken) {
+          config.headers.Authorization = `Bearer ${user.accessToken}`;
+        }
         return config;
       },
-      (error) => {
-        return Promise.reject(error);
-      }
+      (error) => Promise.reject(error)
     );
 
     const resInterceptor = axiosSecure.interceptors.response.use(
