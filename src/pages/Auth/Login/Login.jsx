@@ -33,8 +33,8 @@ const Login = () => {
   // Demo credentials
   const demoCredentials = {
     admin: {
-      email: "zehad@gmail.com",
-      password: "Abcd1234@",
+      email: "adminjk@contesthub.com",
+      password: "@Ab12345",
       label: "Admin",
       icon: FaUserShield,
       color: "cyan",
