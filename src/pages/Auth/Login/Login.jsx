@@ -33,22 +33,22 @@ const Login = () => {
   // Demo credentials
   const demoCredentials = {
     admin: {
-      email: "adminjk@contesthub.com",
+      email: "admingb@contesthub.com",
       password: "@Ab12345",
       label: "Admin",
       icon: FaUserShield,
       color: "cyan",
     },
     creator: {
-      email: "shehab@gmail.com",
-      password: "Abcd1234@",
+      email: "creatorjs@contesthub.com",
+      password: "@Ab12345",
       label: "Creator",
       icon: FaUserTie,
       color: "purple",
     },
     user: {
-      email: "demo@user.com",
-      password: "Abcd1234@",
+      email: "userjr@contesthub.com",
+      password: "@Ab12345",
       label: "User",
       icon: FaUser,
       color: "emerald",
