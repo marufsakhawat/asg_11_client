@@ -116,9 +116,9 @@ const About = () => {
               About <span className="text-gradient-primary">ContestHub</span>
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              We're on a mission to democratize creative competitions, making it
-              easy for talented individuals worldwide to showcase their skills,
-              win prizes, and advance their careers.
+              We’re building a world where creative competitions are open to 
+              everyone—empowering talented people everywhere to showcase their 
+              skills, earn rewards, and level up their careers.
             </p>
           </motion.div>
         </div>
@@ -128,7 +128,7 @@ const About = () => {
           <svg viewBox="0 0 1440 120" fill="none" className="w-full">
             <path
               d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
-              className="fill-base-100"
+              className=""
             />
           </svg>
         </div>
