@@ -33,16 +33,10 @@ const PopularContests = () => {
           className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12"
         >
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <FaFire className="text-orange-500 text-xl" />
-              <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
-                Trending Now
-              </span>
-            </div>
             <h2 className="text-3xl lg:text-4xl font-bold">Popular Contests</h2>
             <p className="text-base-content/60 mt-2 max-w-xl">
-              Join the most exciting competitions with the highest
-              participation. Don't miss your chance to win!
+              Jump into the hottest contests everyone’s talking about 
+              and compete for big wins. Your moment starts now.
             </p>
           </div>
 
@@ -77,7 +71,7 @@ const PopularContests = () => {
           <SkeletonLoader type="cards" count={8} />
         ) : contests.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {contests.slice(0, 5).map((contest, index) => (
+            {contests.slice(0, 8).map((contest, index) => (
               <ContestCard key={contest._id} contest={contest} index={index} />
             ))}
           </div>

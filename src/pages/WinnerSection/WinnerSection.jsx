@@ -97,7 +97,7 @@ const WinnerSection = () => {
     {
       icon: <FaTrophy className="text-3xl" />,
       value: totalContests,
-      label: "Total Contests",
+      label: "Contests Count",
       color: "from-amber-500 to-orange-500",
       suffix: "+",
     },
@@ -151,20 +151,16 @@ const WinnerSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <FaCrown />
-            Hall of Fame
-          </div>
           <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4">
-            Our Winners Are
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-green-400">
+            Winners
+            <span className="text-emerald-500">
               {" "}
               Extraordinary
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Join the league of champions who have showcased their talents and
-            won amazing prizes. Your victory story could be next!
+            Step into the circle of winners who turned their skills into 
+            epic rewards. Yours could be the next big success story.
           </p>
         </motion.div>
 

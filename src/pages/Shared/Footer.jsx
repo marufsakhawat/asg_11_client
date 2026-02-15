@@ -85,7 +85,7 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full pl-12 pr-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-white/50 rounded-l-xl rounded-r-none focus:outline-none focus:ring-2 focus:ring-white/30"
+                  className="w-full pl-12 pr-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-white/50 rounded-l-xl rounded-r-none focus:outline-none focus:ring-2 focus:ring-white/30"
                   required
                 />
               </div>
@@ -94,7 +94,7 @@ const Footer = () => {
                 className="btn bg-white text-cyan-600 hover:bg-cyan-50 border-none rounded-l-none rounded-r-xl px-6"
               >
                 <FaPaperPlane />
-                <span className="hidden sm:inline">Subscribe</span>
+                <span className="hidden sm:inline py-2">Subscribe</span>
               </button>
             </form>
           </div>
@@ -110,6 +110,9 @@ const Footer = () => {
             <p className="mt-4 text-base-content/60 text-sm leading-relaxed">
               Your gateway to creative competitions. Discover, participate, and
               win exciting contests across multiple categories.
+
+              Your ultimate hub for creative challenges—explore diverse categories, 
+              join exciting competitions, and unlock opportunities to showcase your talent.
             </p>
             <div className="flex gap-2 mt-6">
               {socialLinks.map((social, index) => (
@@ -194,7 +197,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-base-content/60">
-              © {new Date().getFullYear()} ContestHub. Made by TheGrim with{" "}
+              © {new Date().getFullYear()} ContestHub.
               <FaRegHeart className="inline" /> All rights reserved.
             </p>
             <div className="flex gap-6">

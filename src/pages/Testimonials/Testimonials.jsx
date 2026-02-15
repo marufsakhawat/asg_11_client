@@ -5,7 +5,7 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Chen",
+      name: "Olivia Martinez",
       role: "Graphic Designer",
       image:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
@@ -16,7 +16,7 @@ const Testimonials = () => {
     },
     {
       id: 2,
-      name: "Michael Roberts",
+      name: "MMason Clark",
       role: "Content Writer",
       image:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
@@ -27,7 +27,7 @@ const Testimonials = () => {
     },
     {
       id: 3,
-      name: "Emily Watson",
+      name: "Isabella Moore",
       role: "Web Developer",
       image:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
@@ -38,7 +38,7 @@ const Testimonials = () => {
     },
     {
       id: 4,
-      name: "David Kim",
+      name: "Emily Carter",
       role: "Photographer",
       image:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
@@ -78,7 +78,7 @@ const Testimonials = () => {
           viewport={{ once: true }}
           className="section-header"
         >
-          <div className="section-badge bg-purple-500/10 text-purple-500">
+          <div className="section-badge bg-cyan-500/10 text-purple-500">
             <FaStar />
             <span>Success Stories</span>
           </div>
