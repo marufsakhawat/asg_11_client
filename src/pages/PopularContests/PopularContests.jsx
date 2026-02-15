@@ -77,7 +77,7 @@ const PopularContests = () => {
           <SkeletonLoader type="cards" count={8} />
         ) : contests.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {contests.slice(0, 0).map((contest, index) => (
+            {contests.slice(0, 4).map((contest, index) => (
               <ContestCard key={contest._id} contest={contest} index={index} />
             ))}
           </div>
