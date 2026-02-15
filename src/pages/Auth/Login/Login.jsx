@@ -77,7 +77,7 @@ const Login = () => {
       await signInUser(data.email, data.password);
       Swal.fire({
         icon: "success",
-        title: "Welcome Back!",
+        title: "You're Welcome",
         text: "You have successfully logged in.",
         timer: 2000,
         showConfirmButton: false,
@@ -110,7 +110,7 @@ const Login = () => {
     <div className="w-full max-w-md mx-auto">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2">Welcome Back!</h1>
+        <h1 className="text-3xl font-bold mb-2">Our pleasure to see your</h1>
         <p className="text-base-content/60">
           Sign in to continue your creative journey
         </p>

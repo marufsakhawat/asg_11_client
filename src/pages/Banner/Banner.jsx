@@ -96,20 +96,16 @@ const Banner = () => {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={itemVariants} className="inline-block mb-6">
-            <span className="px-4 py-2 bg-cyan-500/20 border border-cyan-500/30 text-white rounded-full opacity-50 text-sm font-medium">
-              The #1 Contest Platform
-            </span>
-          </motion.div>
+          
 
           <motion.h1
             variants={itemVariants}
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight"
           >
-            Compete. Create.
+            Time to measure your strength.
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400">
-              Win Amazing Prizes!
+              Are you ready
             </span>
           </motion.h1>
 
@@ -117,8 +113,8 @@ const Banner = () => {
             variants={itemVariants}
             className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10"
           >
-            Join thousands of creative minds. Participate in exciting contests,
-            showcase your talent, and win incredible rewards.
+            Connect with thousands of creatives. Enter exciting competitions, 
+            show what you’ve got, and win big.
           </motion.p>
 
           <motion.form
@@ -141,7 +137,7 @@ const Banner = () => {
         type="submit"
         className="px-4 sm:px-6 py-2 sm:py-3 btn-gradient-primary text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base flex-shrink-0"
       >
-        Search
+        Search contest
       </button>
     </div>
   </div>
@@ -177,9 +173,9 @@ const Banner = () => {
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             {[
-              { value: "10K+", label: "Active Users" },
-              { value: "500+", label: "Contests" },
-              { value: "$50K+", label: "Prize Pool" },
+              { value: "20K+", label: "Users" },
+              { value: "100+", label: "Contests" },
+              { value: "$10K+", label: "Prize" },
               { value: "1K+", label: "Winners" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
